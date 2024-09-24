@@ -1,0 +1,145 @@
+﻿@model ASP.NET_MVC_Application.Models.HomeIndexViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- Render partial view if the user is authenticated -->
+@if (User.Identity.IsAuthenticated)
+{
+
+    <div class="container">
+        <div class="mb-3 d-flex flex-row-reverse bd-highlight">
+            <button type="button" class="p-2 bd-highlight btn btn-secondary btn-md" onclick="window.location.href='@Url.Action("Create", "Posts")'">
+                Create a new Post
+            </button>
+        </div>
+
+        <!-- Div to show search results -->
+        <div id="searchResults">
+            @* This will initially display the posts using the partial view *@
+            @Html.Partial("~/Views/Posts/_IndexPartial.cshtml", Model.Posts)
+        </div>
+
+    </div>
+}
+else
+{
+    <main>
+        @*<section class="row" aria-labelledby="aspnetTitle">
+                <h1 id="title">Welcome to BloggieDev!</h1>
+                <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+                <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+            </section>
+
+            <div class="row">
+                <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+                    <h2 id="gettingStartedTitle">Getting started</h2>
+                    <p>
+                        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                        enables a clean separation of concerns and gives you full control over markup
+                        for enjoyable, agile development.
+                    </p>
+                    <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                </section>
+                <section class="col-md-4" aria-labelledby="librariesTitle">
+                    <h2 id="librariesTitle">Get more libraries</h2>
+                    <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+                    <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+                </section>
+                <section class="col-md-4" aria-labelledby="hostingTitle">
+                    <h2 id="hostingTitle">Web Hosting</h2>
+                    <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                    <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+                </section>
+            </div>*@
+
+        <div class="container mt-5">
+            <!-- Welcome Section -->
+            <div class="text-center mb-5">
+                <h1 class="display-4">Welcome to BloggieDev!</h1>
+                <p class="lead">A hub for tech enthusiasts and developers.</p>
+                <p>Explore the latest insights, tutorials, and tips on a wide range of tech and development topics.</p>
+            </div>
+
+            <!-- Features Section -->
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Latest Blogs</h5>
+                            <p class="card-text">Stay updated with fresh content posted by our community of developers and tech experts.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Tag-Based Browsing</h5>
+                            <p class="card-text">Find blogs on topics like JavaScript, Python, Cloud Computing, and more.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Personalized Content</h5>
+                            <p class="card-text">Create an account to write your own posts and follow your favorite tags.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Community-Driven</h5>
+                            <p class="card-text">Engage with fellow developers, share ideas, and grow together.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Sections -->
+            <div class="mt-5">
+                <h3 class="mb-3">Key Sections:</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Featured Blogs:</strong> Highlighting popular or trending posts.
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Categories & Tags:</strong> Filter and explore posts based on topics of interest.
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Latest Posts:</strong> A dynamically updated list of the most recent posts from all users.
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Search:</strong> Find specific posts or authors using the search functionality.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- How It Works Section -->
+            <div class="mt-5">
+                <h3 class="mb-3">How It Works:</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Create an Account:</strong> Sign up to join the BloggieDev community and gain access to post creation.
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Publish Your Blog:</strong> Share your expertise by writing blog posts and tagging them for visibility.
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Visibility Options:</strong> Set posts to be visible to everyone or keep them private for drafts.
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Admin Features:</strong> Administrators can manage tags, approve posts, and maintain the platform.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-5">
+                <a href="/register" class="btn btn-primary btn-lg">Join BloggieDev Today!</a>
+            </div>
+        </div>
+    </main>
+}

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ASP.NET_MVC_Application.Models.Post>
+
+
+@foreach (var post in Model)
+{
+    <div class="card mt-5 mb-3">
+        <!-- Set the image size using Bootstrap classes and inline styles -->
+        <img src="~/Images/@post.FeaturedImageUrl" class="card-img-top" alt="Post Image" style="width: 100%; height: 300px; object-fit: cover;" />
+
+        <div class="card-body backgroundEffect content">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => post.Heading)</h5>
+            <p class="card-text">@Html.DisplayFor(modelItem => post.ShortDescription)</p>
+            <!-- Display associated TechStacks, check for nulls -->
+            @if (post.PostTechStacks != null && post.PostTechStacks.Any())
+            {
+                <p>
+                    <strong>Tech Stacks:</strong>
+                    @foreach (var techStack in post.PostTechStacks.Select(pt => pt.TechStack))
+                    {
+                        if (techStack != null)
+                        {
+                            <span>@techStack.Name</span>
+                        }
+                    }
+                </p>
+            }
+            <p class="card-text">
+                <small class="text-muted">Published on @Html.DisplayFor(modelItem => post.PublishedDate)</small>
+            </p>
+            <a href="@Url.Action("Details", "Posts", new { id = post.Id })" class="btn btn-primary">Read More</a>
+        </div>
+    </div>
+}

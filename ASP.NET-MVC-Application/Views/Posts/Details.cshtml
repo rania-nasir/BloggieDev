@@ -1,0 +1,104 @@
+﻿@model ASP.NET_MVC_Application.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+    var currentUser = User.Identity.Name; // Get the current logged-in user's name
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Heading)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Heading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PageTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FeaturedImageUrl)
+        </dt>
+        <dd>
+            @if (!string.IsNullOrEmpty(Model.FeaturedImageUrl))
+            {
+                <img src="@Url.Content("~/Images/" + Model.FeaturedImageUrl)" alt="Featured Image" style="max-width:300px;" />
+            }
+            else
+            {
+                <p>No image</p>
+            }
+        </dd>
+
+        <!-- Display TechStacks -->
+        <dt>Tech Stacks</dt>
+        <dd>
+            @if (Model.PostTechStacks != null && Model.PostTechStacks.Any())
+            {
+                foreach (var postTechStack in Model.PostTechStacks)
+                {
+                    <span>@postTechStack.TechStack.Name</span>
+                }
+            }
+            else
+            {
+                <p>No Tech Stacks</p>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PublishedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Visible)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Visible)
+        </dd>
+    </dl>
+</div>
+
+@if (Model.Author == currentUser)
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "text-danger" })
+    </p>
+}
+<p>
+        @Html.ActionLink("Back to List", "Index", "Home")
+    </p>

@@ -1,0 +1,39 @@
+﻿.card {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background: #fff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 10;
+    overflow: hidden;
+    transform: scale(1); /* Initial scale */
+}
+
+    .card:hover {
+        transform: scale(1.05); /* Slightly increase the size on hover */
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 15px; /* Stronger shadow on hover */
+        transition: all 0.3s ease-in-out; /* Smooth transition */
+        color: #fff;
+    }
+
+        .card:hover .backgroundEffect {
+            bottom: 0;
+            background: #1b9ce3;
+            transition: background 0.3s ease;
+        }
+
+        .card:hover .btn {
+            bottom: 0;
+            background: #fff;
+            color: black;
+            transform: translateY(0); /* Animate button's position */
+            transition: all 0.3s ease-in-out;
+        }
+
+    /* Optional: Add button hover effect */
+    .card .btn:hover {
+        color: #1b9ce3;
+    }
+
+    .card:hover .text-muted {
+        color: #fff !important
+    }

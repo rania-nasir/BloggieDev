@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Roles and Users</h2>
+
+@model IEnumerable<ASP.NET_MVC_Application.Models.RoleUserViewModel>
+
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Role Name</th>
+            <th>User Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var role in Model)
+            {
+                <tr>
+                    <td>@role.RoleName</td>
+                    <td>@role.UserName</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2">No roles available.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "Home")
+</div>

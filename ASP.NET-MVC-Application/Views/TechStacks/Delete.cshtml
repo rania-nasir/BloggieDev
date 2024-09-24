@@ -1,0 +1,19 @@
+﻿@model ASP.NET_MVC_Application.Models.TechStack
+
+@{
+    ViewBag.Title = "Delete";
+}
+<h2>Delete TechStack</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>@Model.Name</h4>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a href="@Url.Action("Index")" class="btn btn-default">Cancel</a>
+        @Html.ActionLink("Back to List", "Index")
+    }
+</div>
